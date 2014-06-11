@@ -19,35 +19,39 @@ object Candies {
             
             b = readInt()
             
-            if(a<b && increment <0){
-            	increment = 0
-            	spike = 0
-            }else if(a<b && increment >=0){
-                increment += 1
-                candies += increment
+            if(a<b && increment<=0){
+              candies +=1
+              increment = 1
+        	}else if(a<b && increment >0){
+              
+        	  increment+=1
+        	  candies +=increment
+              
             }
             
+            if(a==b)
+                increment = 0
+            
+                
             if(a>b && increment > 0){
             	spike = increment
             	increment = -1
+            	candies +=1
             }else if(a>b && increment <=0){
               
-              increment -=1
-              
-              if((-increment) >= spike){
-                candies = candies+ 1
-              }
-              
-              candies = candies - increment
+            	increment -=1
+            	
+            	if((-increment) == spike && spike!=0){
+            	// println("Spike :" +spike)
+            	  candies -= spike
+            	  spike = 0
+            	}
+            	
+            	candies = candies - increment
             }
-            
-            
-            if(a==b){
-              increment=0
-              spike = 0
-            }
-            a=b
-        //    println(b + ":" + increment)
+           
+           a=b
+           println(b + ":" + increment)
             
         }
         println(candies)
