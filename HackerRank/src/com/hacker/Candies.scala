@@ -12,7 +12,7 @@ object Candies {
         var increment = 0
             
         var candies = N
-        var offset  = 0
+        var j  = 0
         var spike = 0
         
         for(i<-0 to N-2){
@@ -22,11 +22,12 @@ object Candies {
             if(a<b && increment<=0){
               candies +=1
               increment = 1
+              spike  = 0
         	}else if(a<b && increment >0){
               
         	  increment+=1
         	  candies +=increment
-              
+              spike = 0
             }
             
             if(a==b)
@@ -36,22 +37,28 @@ object Candies {
             if(a>b && increment > 0){
             	spike = increment
             	increment = 0
+            	j=0
             //	candies +=1
             }else if(a>b && increment <=0){
             	
             	increment -=1
-            	if((-increment) >= spike && spike!=0){
-//            	 println(b + ":" +spike)
+            	if((-increment) > spike && spike!=0){
+            	 println("Spike @" + b + ":" +spike)
             
-            	  candies +=1
-            	//  spike = 0
+            	  if(j==0)
+            	    candies = candies + spike
+            	  else{
+            	    candies +=1
+            	    spike = 0
+            	  }
+            	 	j +=1
             	}
             	
             	candies = candies - increment
             }
            
            a=b
- //          println(b + ":" + increment)
+           println(b + ":" + increment)
  //          println(b + ":" + candies)
  //           
         }
