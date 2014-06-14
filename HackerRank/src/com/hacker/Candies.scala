@@ -12,37 +12,29 @@ object Candies {
         var increment = 0
             
         var candies = N
-        var j  = 0
         var spike = 0
         
         for(i<-0 to N-2){
             
             b = readInt()
             
-            if(a<b && increment<0){
-              candies +=1
-              increment = 0
-              spike  = 0
-        	}else if(a<b){
-              
-        	  increment+=1
+            if(a<b && increment <0){
+        	  increment=1
         	  candies +=increment
-              spike = 0
-            }
-            
-            if(a==b){
+        	  spike = increment
+            }else if(a<b){
+              increment+=1
+        	  candies +=increment
+        	  spike = increment
+            }else if(a==b){
               increment = 0
               spike = 0
-            }
-                
-            if(a>b && increment > 0){
-            	spike = increment
+            }else if(a>b && increment > 0){
             	increment = 0
-            }else if(a>b && increment <=0){
+            }else if(a>b){
             	
             	increment -=1
-            	if((-increment) >= spike){
-//            		println("Spike @" + b + ":" +spike)
+            	if((-increment) >= spike && spike > 0){
             		candies = candies - increment + 1
             	}else{
             	  candies = candies - increment
@@ -50,9 +42,6 @@ object Candies {
             }
            
            a=b
-  //         println(b + ":" + increment)
-  //         println(b + ":" + candies)
- //           
         }
         println(candies)
     }
